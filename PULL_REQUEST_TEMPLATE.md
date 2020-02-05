@@ -20,6 +20,7 @@ Please include a summary of the change and which issue is fixed. Please also inc
 - [ ] activity.js
 - [ ] hydrate.js
 - [ ] index.html
+- [ ] styles.css
 - [ ] scripts.js
 - [ ] sleep.js
 - [ ] user.js
