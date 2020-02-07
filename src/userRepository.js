@@ -41,11 +41,11 @@ class UserRepository {
     //should return overall average sleepQuality
     //should be a number
     console.log(sleepData.length);
-    return (sleepData.reduce((acc, data) => {
+    return Number((sleepData.reduce((acc, data) => {
       acc += data.sleepQuality;
       console.log(acc);
       return acc;
-    }, 0) / sleepData.length);
+    }, 0) / sleepData.length).toFixed(2));
   }
 
   calculateAverageNumStairsClimbed() {
