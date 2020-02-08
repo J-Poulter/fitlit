@@ -25,7 +25,9 @@ function generateRandomUser() {
 }
 
 function populateUsers(person) {
+  var person1 = new User(person);
   userDashboard.innerHTML += `
+  <header>Hi, ${person1.returnFirstName()}!</header>
   <div>
     <label>Name: </label><p>${person.name}</p>
     <label>ID: </label><p>${randomIdNum}</p>
