@@ -22,6 +22,12 @@ class Activity {
   calculateElevationClimbed() {
 
   }
+
+  returnBestStairDay() {
+    //input = activityData.flightsOfStairs
+    //proto = .push // .find or .sort and shift b-a and shift highest
+    //return date associated with highest stair count
+  }
 }
 
 if (typeof module !== 'undefined') {
