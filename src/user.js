@@ -15,25 +15,9 @@ class User {
     //proto = .shift
     //ouput = string of the first name
     //test = should return string
-    console.log(this.name.split(''));
+    return this.name.split(' ').shift();
 
   }
-
-  evaluateIfStepGoalMet() {
-    //evaluates if step goal was met for any given day
-    //input = stepGoal comparing to activityData.numSteps
-    //output = boolean
-    //if true call returnDaysWhereStepGoalMet()
-    //test should return boolean
-  }
-
-  returnDaysWhereStepGoalMet() {
-    //input = activtyData.date
-    //proto = .push//.filter
-    //output = [array of dates]
-    //test = []
-  }
-
 }
 
 if (typeof module !== 'undefined') {
