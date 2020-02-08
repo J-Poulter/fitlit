@@ -15,6 +15,8 @@ class User {
     //proto = .shift
     //ouput = string of the first name
     //test = should return string
+    console.log(this.name.split(''));
+
   }
 
   evaluateIfStepGoalMet() {
@@ -32,11 +34,6 @@ class User {
     //test = []
   }
 
-  returnBestStairDay() {
-    //input = activityData.flightsOfStairs
-    //proto = .push // .find or .sort and shift b-a and shift highest
-    //return date associated with highest stair count
-  }
 }
 
 if (typeof module !== 'undefined') {
