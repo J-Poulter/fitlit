@@ -7,7 +7,7 @@ class Sleep {
   }
 
   calculateSleepAverage() {
-
+    
   }
 
   returnHoursSlept() {

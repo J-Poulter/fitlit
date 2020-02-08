@@ -40,10 +40,8 @@ class UserRepository {
   calculateAverageSleepQuality() {
     //should return overall average sleepQuality
     //should be a number
-    console.log(sleepData.length);
     return Number((sleepData.reduce((acc, data) => {
       acc += data.sleepQuality;
-      console.log(acc);
       return acc;
     }, 0) / sleepData.length).toFixed(2));
   }
