@@ -1,6 +1,6 @@
 class UserRepository {
   constructor(data) {
-    this.users = data
+    this.users = data;
     //this.users should be an array[3]
   }
 
@@ -38,8 +38,6 @@ class UserRepository {
   }
 
   calculateAverageSleepQuality() {
-    //should return overall average sleepQuality
-    //should be a number
     return Number((sleepData.reduce((acc, data) => {
       acc += data.sleepQuality;
       return acc;
