@@ -5,118 +5,121 @@ const Sleep = require('../src/sleep');
 
 describe('Sleep', function() {
 
-  let sleep1, sleep2, sleep3, sleep4, sleep5, sleep6, sleep7, sleep8, sleep9, sleep10, sleep11, sleep12, sleep13, sleep14, sleep15, sleep16, sleep17, sleep18;
+  let sleepData, week;
 
   beforeEach(function() {
-
-    sleep1 = new Sleep({
+    sleepData = new Sleep([
+    {
       "userID": 1,
       "date": "2019/06/15",
       "hoursSlept": 6.1,
       "sleepQuality": 2.2
-    });
-    sleep2 = new Sleep({
+    },
+    {
       "userID": 2,
       "date": "2019/06/15",
       "hoursSlept": 7,
       "sleepQuality": 4.7
-    });
-    sleep3 = new Sleep({
+    },
+    {
       "userID": 1,
       "date": "2019/06/16",
       "hoursSlept": 4.1,
       "sleepQuality": 3.8
-    });
-    sleep4 = new Sleep({
+    },
+    {
       "userID": 2,
       "date": "2019/06/16",
       "hoursSlept": 7.5,
       "sleepQuality": 3.8
-    });
-    sleep5 = new Sleep({
+    },
+    {
       "userID": 1,
       "date": "2019/06/17",
       "hoursSlept": 8,
       "sleepQuality": 2.6
-    });
-    sleep6 = new Sleep({
+    },
+    {
       "userID": 2,
       "date": "2019/06/17",
       "hoursSlept": 5.7,
       "sleepQuality": 3
-    });
-    sleep7 = new Sleep({
+    },
+    {
       "userID": 1,
       "date": "2019/06/18",
       "hoursSlept": 10.4,
       "sleepQuality": 3.1
-    });
-    sleep8 = new Sleep({
+    },
+    {
       "userID": 2,
       "date": "2019/06/18",
       "hoursSlept": 10.8,
       "sleepQuality": 3.2
-    });
-    sleep9 = new Sleep({
+    },
+    {
       "userID": 1,
       "date": "2019/06/19",
       "hoursSlept": 10.7,
       "sleepQuality": 1.2
-    });
-    sleep10 = new Sleep({
+    },
+    {
       "userID": 2,
       "date": "2019/06/19",
       "hoursSlept": 9.6,
       "sleepQuality": 2.5
-    });
-    sleep11 = new Sleep({
+    },
+    {
       "userID": 1,
       "date": "2019/06/20",
       "hoursSlept": 9.3,
       "sleepQuality": 1.2
-    });
-    sleep12 = new Sleep({
+    },
+    {
       "userID": 2,
       "date": "2019/06/20",
       "hoursSlept": 10.1,
       "sleepQuality": 2.4
-    });
-    sleep13 = new Sleep({
+    },
+    {
       "userID": 1,
       "date": "2019/06/21",
       "hoursSlept": 7.8,
       "sleepQuality": 4.2
-    });
-    sleep14 = new Sleep({
+    },
+    {
       "userID": 2,
       "date": "2019/06/21",
       "hoursSlept": 4.3,
       "sleepQuality": 4.8
-    });
-    sleep15 = new Sleep({
+    },
+    {
       "userID": 1,
       "date": "2019/06/22",
       "hoursSlept": 7,
       "sleepQuality": 3
-    });
-    sleep16 = new Sleep({
+    },
+    {
       "userID": 2,
       "date": "2019/06/22",
       "hoursSlept": 4.8,
       "sleepQuality": 3.3
-    });
-    sleep17 = new Sleep({
+    },
+    {
       "userID": 1,
       "date": "2019/06/23",
       "hoursSlept": 7.8,
       "sleepQuality": 1.5
-    });
-    sleep18 = new Sleep({
+    },
+    {
       "userID": 2,
       "date": "2019/06/23",
       "hoursSlept": 8,
       "sleepQuality": 4.9
-    });
+    }
+  ]);
+
+  week = ['2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22']
   });
 
   it('should be a function', function() {
@@ -124,43 +127,52 @@ describe('Sleep', function() {
   });
 
   it('should be an instance of Sleep', function() {
-    expect(Sleep).to.be.an.instanceof(Sleep);
+    expect(sleepData).to.be.an.instanceof(Sleep);
   });
 
-  it('should have a userId property', function() {
-    expect(sleep1.userId).to.deep.equal(1);
+  it('should have a sleepData property', function() {
+    expect(sleepData.sleepData).to.deep.equal(sleepData.sleepData);
   });
 
-  it('should have a date property', function() {
-    expect(sleep1.date).to.deep.equal('2019/06/15');
+  it('should be able to calculate a users overall average hours slept', function() {
+    expect(sleepData.calculateAverageHoursSlept(1)).to.deep.equal(7.91);
   });
 
-  it('should have a hoursSlept property', function() {
-    expect(sleep1.hoursSlept).to.deep.equal(6.1);
+  it('should be able to calculate a users overall sleep quality', function() {
+    expect(sleepData.calculateUsersAverageSleepQuality(1)).to.deep.equal(2.53);
   });
 
-  it('should have a sleepQuality property', function() {
-    expect(sleep1.sleepQuality).to.deep.equal(2.2);
+  it('should be able to return a users hours slept on a given day', function() {
+    expect(sleepData.returnUsersHoursSleptOnDay(1, '2019/06/16')).to.deep.equal(4.1);
   });
 
-  it('should be', function() {
-    expect(sleep1.).to.deep.equal();
+  it('should be able to return a users sleep quality on a given day', function() {
+    expect(sleepData.returnSleepQuality(1, '2019/06/16')).to.deep.equal(3.8);
   });
 
-  it('should be', function() {
-    expect(sleep1.).to.deep.equal();
+  it('should be able to return how many hours a user slept each day over a given week', function() {
+    expect(sleepData.returnUsersHoursSleptForWeek(1, week)).to.deep.equal([4.1, 8, 10.4, 10.7, 9.3, 7.8, 7]);
   });
 
-  it('should be', function() {
-    expect(Sleep).to.be.a('');
+  it('should be able to return a users sleep quality for each day over a given week', function() {
+    expect(sleepData.returnUsersSleepQualityForWeek(1, week)).to.deep.equal([3.8, 2.6, 3.1, 1.2, 1.2, 4.2, 3]);
   });
 
-  it('should be', function() {
-    expect(Sleep).to.be.a('');
+  it.skip('should be able to find all users whose sleep quality averaged over 3 for a given week', function() {
+    expect(sleepData.findAllQualitySleepersForWeek(week)).to.deep.equal();
   });
 
-  it('should be', function() {
-    expect(Sleep).to.be.a('');
+  it('should be able to find the users with the highest number of hours slept', function() {
+    expect(sleepData.findHighestSleepersOnDay('2019/06/18')).to.deep.equal([{
+      "userID": 2,
+      "date": "2019/06/18",
+      "hoursSlept": 10.8,
+      "sleepQuality": 3.2
+    }]);
   });
 
-})
+  it.skip('should be able to calculate a users average sleep quality difference from one week to another', function() {
+    expect(sleepData.calculateWeeklyQualitySleepChange()).to.deep.equal();
+  });
+
+});
