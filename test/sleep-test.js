@@ -158,7 +158,11 @@ describe('Sleep', function() {
     expect(sleepData.returnUsersSleepQualityForWeek(1, week)).to.deep.equal([3.8, 2.6, 3.1, 1.2, 1.2, 4.2, 3]);
   });
 
-  it.skip('should be able to find all users whose sleep quality averaged over 3 for a given week', function() {
+  it('should be able to return the users average sleep quality for a given week', function() {
+    expect(sleepData.returnUsersAverageSleepQualityForWeek(1, week)).to.deep.equal(2.73)
+  })
+
+  it('should be able to find all users whose sleep quality averaged over 3 for a given week', function() {
     expect(sleepData.findAllQualitySleepersForWeek(week)).to.deep.equal();
   });
 
@@ -171,8 +175,8 @@ describe('Sleep', function() {
     }]);
   });
 
-  it.skip('should be able to calculate a users average sleep quality difference from one week to another', function() {
-    expect(sleepData.calculateWeeklyQualitySleepChange()).to.deep.equal();
+  it('should be able to calculate a users average sleep quality difference from one week to another', function() {
+    expect(sleepData.calculateWeeklyQualitySleepChange(1, week, week)).to.deep.equal('Unfortunately your average sleep quality rating for the week has decreased by 0..');
   });
 
 });
