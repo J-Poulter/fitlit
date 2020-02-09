@@ -50,17 +50,23 @@ class Sleep {
     return weeksInfo;
   }
 
+  returnUsersAverageSleepQualityForWeek(usersId, week) {
+    let weeksInfo = this.returnUsersSleepQualityForWeek(usersId, week);
+    return Number((weeksInfo.reduce((acc, cur) => {
+      acc += cur;
+      return acc ;
+    }, 0) / weeksInfo.length).toFixed(2));
+  }
+
   findAllQualitySleepersForWeek(week) {
-    // let test = [];
-    // let testtwo = this.sleepData;
-    // let filteredDays = week.forEach(day => {
-    //   return testtwo.filter(data => testtwo.date === day)
-    // });
-    // console.log(filteredDays);
-    // let newarr = test.concat(filteredDays);
-    // console.log(newarr);
-    // let test = new Set(this.sleepData.userID);
-    // console.log(test);
+    let allUsersInWeek = [];
+    week.forEach(day => this.sleepData.filter(user => user.date === day).forEach(user => allUsersInWeek.push(user)));
+    let userIds = allUsersInWeek.map(user => user.userID);
+    let uniqueIds = [...new Set(userIds)];
+    let qualitySleepers = [];
+    uniqueIds.forEach(id => {
+      if (this.returnUsersAverageSleepQualityForWeek(id, week) > 3) {qualitySleepers.push(`userID ${id} has SQ of ${this.returnUsersAverageSleepQualityForWeek(id, week)}!`)}
+    });
   }
 
   findHighestSleepersOnDay(day) {
@@ -71,8 +77,17 @@ class Sleep {
     return filteredDay.filter(user => user.hoursSlept === highestHours);
   }
 
-  calculateWeeklyQualitySleepChange(week1, week2) {
-
+  calculateWeeklyQualitySleepChange(usersId, week1, week2) {
+    let week2Average = this.returnUsersAverageSleepQualityForWeek(usersId, week2);
+    let week1Average = this.returnUsersAverageSleepQualityForWeek(usersId, week1);
+    let qualityChange = week2Average - week1Average;
+    if (qualityChange > 0) {
+      return `Congratulations! Your average sleep quality rating for the week has increased by ${qualityChange}!!`
+    }
+    else {
+      return `Unfortunately your average sleep quality rating for the week has decreased by ${qualityChange}..`
+    };
+    // ************** Write Happy/Sad Tests for this and findqualitysleepers ****************
   }
 }
 
