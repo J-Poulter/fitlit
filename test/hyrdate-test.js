@@ -78,10 +78,14 @@ describe('Hydration', function() {
   });
 
   it('should be able to calculate average total consumption', function() {
-    expect(hydration.calculateAverageTotalConsumption(1)).to.deep.equal(106);
+    expect(hydration.calculateAverageTotalConsumption()).to.deep.equal(38.3);
   })
 
   it('should be able to return users daily consumption', function() {
-    expect(hydration.returnDailyConsumption("2019/06/16", 1)).to.deep.equal(37);
+    expect(hydration.returnDailyConsumption("2019/06/21", 2)).to.deep.equal(34);
+  })
+
+  it('should be able to return users weekly consumption', function() {
+    expect(hydration.returnWeeklyConsumption(1)).to.deep.equal([37, 61, 76, 25, 14, 20, 15]);
   })
 })
