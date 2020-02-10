@@ -8,7 +8,7 @@ const Activity = require('../src/activity');
 
 describe('UserRepository', function() {
 
-  let user1, user2, user3, user4, sleep1, sleep2, sleep3, sleep4, activity1, activity2, activity3, activity4, userRepository;
+  let user1, user2, user3, user4, activity1, activity2, activity3, activity4, userRepository;
 
   beforeEach(function() {
     user1 = new User({
@@ -47,30 +47,6 @@ describe('UserRepository', function() {
       "dailyStepGoal": 4000,
       "friends": [1, 2, 3]
     });
-    sleep1 = new Sleep({
-      "userID": 1,
-      "date": "2019/06/15",
-      "hoursSlept": 6.1,
-      "sleepQuality": 2.2
-    });
-    sleep2 = new Sleep({
-      "userID": 2,
-      "date": "2019/06/15",
-      "hoursSlept": 7,
-      "sleepQuality": 4.7
-    });
-    sleep3 = new Sleep({
-      "userID": 3,
-      "date": "2019/06/15",
-      "hoursSlept": 10.8,
-      "sleepQuality": 4.7
-    });
-    sleep4 = new Sleep({
-      "userID": 4,
-      "date": "2019/06/15",
-      "hoursSlept": 5.4,
-      "sleepQuality": 3
-    });
     activity1 = new Activity({
       "userID": 1,
       "date": "2019/06/15",
@@ -99,14 +75,39 @@ describe('UserRepository', function() {
       "minutesActive": 114,
       "flightsOfStairs": 32
     });
-    sleepData = [sleep1, sleep2, sleep3, sleep4];
+    sleepData = [
+    {
+      "userID": 1,
+      "date": "2019/06/15",
+      "hoursSlept": 6.1,
+      "sleepQuality": 2.2
+    },
+    {
+      "userID": 2,
+      "date": "2019/06/15",
+      "hoursSlept": 7,
+      "sleepQuality": 4.7
+    },
+    {
+      "userID": 3,
+      "date": "2019/06/15",
+      "hoursSlept": 10.8,
+      "sleepQuality": 4.7
+    },
+    {
+      "userID": 4,
+      "date": "2019/06/15",
+      "hoursSlept": 5.4,
+      "sleepQuality": 3
+    }
+  ];
     activityData = [activity1, activity2, activity3, activity4];
     userRepository = new UserRepository([user1, user2, user3, user4]);
   });
 
   it('should be a function', function() {
     expect(UserRepository).to.be.a('function');
-  })
+  });
 
   it('should be an instance of UserRepository', function() {
     expect(userRepository).to.be.an.instanceof(UserRepository);
@@ -114,33 +115,33 @@ describe('UserRepository', function() {
 
   it('should have a users property that contains all users', function() {
     expect(userRepository.users).to.deep.equal([user1, user2, user3, user4]);
-  })
+  });
 
   it('should be able to return a users data from their userId', function() {
     expect(userRepository.returnUserData(1)).to.deep.equal(user1);
-  })
+  });
 
   it('should be able to count the number of users it contains', function() {
     expect(userRepository.countUsers()).to.deep.equal(4);
-  })
+  });
 
   it('should be able to calculate the overall average step goal among its users', function() {
     expect(userRepository.calculateAverageStepGoal()).to.deep.equal(6000);
-  })
+  });
 
   it('should be able to calculate the average steps taken among its users', function() {
     expect(userRepository.calculateAverageStep()).to.deep.equal(4689.75);
-  })
+  });
 
   it('should be able to calculate the average sleep quality value among its users', function() {
     expect(userRepository.calculateAverageSleepQuality()).to.deep.equal(3.65);
-  })
+  });
 
   it('should be able to calculate the average flights of stairs climbed among its users', function() {
     expect(userRepository.calculateAverageNumStairsClimbed()).to.deep.equal(22.75);
-  })
+  });
 
   it('should be able to calculate the overall average number of minutes active among its users', function() {
     expect(userRepository.calculateAverageActiveMinutes()).to.deep.equal(127);
-  })
-})
+  });
+});
