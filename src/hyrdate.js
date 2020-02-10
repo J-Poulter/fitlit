@@ -1,15 +1,16 @@
 class Hydration {
   constructor(hydrationData, userID) {
     this.userID = userID;
-    this.hydrationData = hydrationData.filter(user =>user.userID === this.userID);
+    this.hydrationData = hydrationData
   }
 
-  calculateTotalAverageConsumption() {
+  calculateAverageTotalConsumption() {
     return Math.floor(this.hydrationData.reduce((acc, cur) => {
+      console.log(cur.numOunces);
       acc += cur.numOunces;
-      return acc
-    }, 0) / this.hydrationData.length)
-  }
+      return acc;
+    }, 0 )) / this.hydrationData.length
+  }g
 
 
 
