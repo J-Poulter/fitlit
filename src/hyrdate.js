@@ -1,20 +1,30 @@
 class Hydration {
-  constructor(hydrationData) {
-    this.userId = hydrationData.userID,
-    this.date = hydrationData.date,
-    this.numOunces = hydrationData.numOunces
+  constructor(hydrationData, userID) {
+    this.hydrationData = hydrationData;
+    this.userID = userID;
   }
 
-  calculateAverageDailyConsumption() {
+  calculateTotalConsumption(id) {
+    let totalConsumption = this.hydrationData.reduce((acc, total) => {
+      if(total.userID === id) {
+        acc += total.numOunces;
+      }
+      return acc
+    }, 0)
+    return totalConsumption;
+      }
 
-  }
 
-  returnDailyConsumption() {
 
+  returnDailyConsumption(date) {
+  let dailyConsumption = this.hydrationData.find(consumption => {
+       return consumption.date === date;
+    })
+     return dailyConsumption.numOunces;
   }
 
   returnWeeklyConsumption() {
-
+    return this.hydrationData.slice(-7).map(day => day.numOunces);
   }
 }
 
