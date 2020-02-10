@@ -119,8 +119,10 @@ describe('Sleep', function() {
     }
   ]);
 
-  week = ['2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22']
+  week = ['2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22'];
   });
+
+  week2 = ['2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22', '2019/06/23'];
 
   it('should be a function', function() {
     expect(Sleep).to.be.a('function');
@@ -163,7 +165,7 @@ describe('Sleep', function() {
   })
 
   it('should be able to find all users whose sleep quality averaged over 3 for a given week', function() {
-    expect(sleepData.findAllQualitySleepersForWeek(week)).to.deep.equal();
+    expect(sleepData.findAllQualitySleepersForWeek(week)).to.deep.equal(['userID 2 has a SQ of 3.29!']);
   });
 
   it('should be able to find the users with the highest number of hours slept', function() {
@@ -175,8 +177,11 @@ describe('Sleep', function() {
     }]);
   });
 
-  it('should be able to calculate a users average sleep quality difference from one week to another', function() {
-    expect(sleepData.calculateWeeklyQualitySleepChange(1, week, week)).to.deep.equal('Unfortunately your average sleep quality rating for the week has decreased by 0..');
+  it('should be able to calculate the change of a users average sleep quality from one week to another and return a positive message if it improved', function() {
+    expect(sleepData.calculateWeeklyQualitySleepChange(1, week2, week)).to.deep.equal('Congratulations! Your average sleep quality rating for the week has increased by 0.33!!');
   });
 
+  it('should be able to return a different message if there has been a decrease in the users sleep quality from one week to another', function() {
+    expect(sleepData.calculateWeeklyQualitySleepChange(1, week, week2)).to.deep.equal('Unfortunately your average sleep quality rating for the week has decreased by -0.33..');
+  });
 });
