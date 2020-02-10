@@ -35,7 +35,8 @@ class Sleep {
     let filteredUser = this.sleepData.filter(user => user.userID === usersId);
     let weeksInfo = [];
     week.forEach(day => {
-      weeksInfo.push(filteredUser.find(filtered => filtered.date === day).hoursSlept);
+      weeksInfo.push(filteredUser
+        .find(filtered => filtered.date === day).hoursSlept);
     });
     return weeksInfo;
   }
@@ -45,7 +46,8 @@ class Sleep {
     let filteredUser = this.sleepData.filter(user => user.userID === usersId);
     let weeksInfo = [];
     week.forEach(day => {
-      weeksInfo.push(filteredUser.find(filtered => filtered.date === day).sleepQuality);
+      weeksInfo.push(filteredUser
+        .find(filtered => filtered.date === day).sleepQuality);
     });
     return weeksInfo;
   }
@@ -60,13 +62,18 @@ class Sleep {
 
   findAllQualitySleepersForWeek(week) {
     let allUsersInWeek = [];
-    week.forEach(day => this.sleepData.filter(user => user.date === day).forEach(user => allUsersInWeek.push(user)));
-    let userIds = allUsersInWeek.map(user => user.userID);
-    let uniqueIds = [...new Set(userIds)];
     let qualitySleepers = [];
+    week.forEach(day => this.sleepData
+      .filter(user => user.date === day)
+      .forEach(user => allUsersInWeek
+        .push(user.userID)));
+    let uniqueIds = [...new Set(allUsersInWeek)];
     uniqueIds.forEach(id => {
-      if (this.returnUsersAverageSleepQualityForWeek(id, week) > 3) {qualitySleepers.push(`userID ${id} has SQ of ${this.returnUsersAverageSleepQualityForWeek(id, week)}!`)}
+      if (this.returnUsersAverageSleepQualityForWeek(id, week) > 3) {
+        qualitySleepers.push(`userID ${id} has a SQ of ${this.returnUsersAverageSleepQualityForWeek(id, week)}!`)
+      };
     });
+    return qualitySleepers;
   }
 
   findHighestSleepersOnDay(day) {
@@ -80,14 +87,13 @@ class Sleep {
   calculateWeeklyQualitySleepChange(usersId, week1, week2) {
     let week2Average = this.returnUsersAverageSleepQualityForWeek(usersId, week2);
     let week1Average = this.returnUsersAverageSleepQualityForWeek(usersId, week1);
-    let qualityChange = week2Average - week1Average;
+    let qualityChange = (week2Average - week1Average).toFixed(2);
     if (qualityChange > 0) {
       return `Congratulations! Your average sleep quality rating for the week has increased by ${qualityChange}!!`
     }
     else {
       return `Unfortunately your average sleep quality rating for the week has decreased by ${qualityChange}..`
     };
-    // ************** Write Happy/Sad Tests for this and findqualitysleepers ****************
   }
 }
 
