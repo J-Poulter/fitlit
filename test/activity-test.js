@@ -179,4 +179,24 @@ describe('Activity', function() {
     expect(activityData.returnMinutesActive("2019/06/17", 1)).to.deep.equal(168)
   })
 
+  // it('should be able to return weekly average minutes active', function() {
+  //   expect(activityData.calculateWeeklyAverageMinutesActive(1)).to.deep.equal(168)
+  // })
+
+  it('should be able to return stairs climbed', function() {
+    expect(activityData.calculateElevationClimbed("2019/06/17", 1)).to.deep.equal(18)
+  })
+
+  // it('should be able to return best stair day', function() {
+  //   expect(activityData.returnBestStairDay(1)).to.deep.equal()
+  // })
+
+  it('should be able to evaluate if step goals were met', function() {
+    expect(activityData.evaluateIfStepGoalMet("2019/06/17", 1)).to.deep.equal(true)
+  })
+
+  it('should be able to return days where step goal was met', function() {
+    expect(activityData.returnDaysWhereStepGoalMet(1)).to.deep.equal([])
+  })
+
 });
