@@ -78,7 +78,7 @@ describe('Hydration', function() {
   });
 
   it('should be able to calculate average total consumption', function() {
-    expect(hydration.calculateAverageTotalConsumption()).to.deep.equal(38.3);
+    expect(hydration.calculateAverageTotalConsumption(2)).to.deep.equal(51.5);
   })
 
   it('should be able to return users daily consumption', function() {
