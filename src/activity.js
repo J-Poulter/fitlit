@@ -1,46 +1,60 @@
 class Activity {
   constructor(activityData) {
-    this.userID = activityData.userId,
-    this.date = activityData.date,
-    this.numSteps = activityData.numSteps,
-    this.minutesActive = activityData.minutesActive,
-    this.flightsOfStairs = activityData.flightsOfStairs
+    this.activityData = activityData,
+    this.milesWalked = 0,
+    this.metStepGoal = null;
   }
 
-  calculateMilesWalked() {
+  calculateMilesWalked(date, id) {
+    // let filteredUser = this.activityData.filter(user => user.userID === id);
+    // let getMiles = this.activityData.map(data => {
+    //   if(data.userID === id && data.date === date) {
+    //     let mile = data.numSteps * user.strideLength/5280;
+    //     console.log(this.user);
+    //     this.milesWalked += mile;
+    //     // console.log(this.user.strideLength);
+    //   }
+    //   return this.milesWalked
+    //   console.log(this.milesWalked)
+    // })
+  }
+
+
+
+  returnMinutesActive(date, id) {
+    let minutesActive = this.activityData.map(data => {
+      if(data.userID === id && data.date === date) {
+        console.log(data.minutesActive);
+      }
+      return data.minutesActive
+  })
+}
+  calculateWeeklyAverageMinutesActive(id) {
 
   }
 
-  returnMinutesActive() {
+  calculateElevationClimbed(date, id) {
 
   }
 
-  calcWeeksActiveAverage() {
-
-  }
-
-  calculateElevationClimbed() {
-
-  }
-
-  returnBestStairDay() {
+  returnBestStairDay(id) {
     //input = activityData.flightsOfStairs
     //proto = .push // .find or .sort and shift b-a and shift highest
     //return date associated with highest stair count
   }
 
-  evaluateIfStepGoalMet() {
+  evaluateIfStepGoalMet(date, id) {
     //evaluates if step goal was met for any given day
     //input = stepGoal comparing to activityData.numSteps
     //output = boolean
     //if true call returnDaysWhereStepGoalMet()
-    //test should return boolean
-    if(user.dailystepGoal <= activity.numSteps) {
-      return false
+    // //test should return boolean
+    // if(user.dailystepGoal <= activity.numSteps) {
+    //   return false
     }
-  }
 
-  returnDaysWhereStepGoalMet() {
+
+  returnDaysWhereStepGoalMet(id) {
     //input = activtyData.date
     //proto = .push//.filter
     //output = [array of dates]
