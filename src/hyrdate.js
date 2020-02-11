@@ -4,12 +4,13 @@ class Hydration {
     this.hydrationData = hydrationData
   }
 
-  calculateAverageTotalConsumption() {
-    return Math.floor(this.hydrationData.reduce((acc, cur) => {
-      console.log(cur.numOunces);
-      acc += cur.numOunces;
-      return acc;
-    }, 0 )) / this.hydrationData.length
+  calculateAverageTotalConsumption(id) {
+    if(this.userID === id) {
+      return Math.floor(this.hydrationData.reduce((acc, cur) => {
+        acc += cur.numOunces;
+        return acc;
+      }, 0 )) / this.hydrationData.length
+    }
   }
 
   returnDailyConsumption(date, id) {
