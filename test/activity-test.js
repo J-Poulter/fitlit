@@ -196,7 +196,7 @@ describe('Activity', function() {
   })
 
   it('should be able to return days where step goal was met', function() {
-    expect(activityData.returnDaysWhereStepGoalMet(1)).to.deep.equal([])
+    expect(activityData.returnDaysWhereStepGoalMet(1)).to.deep.equal(["2019/06/17", "2019/06/20", "2019/06/22", "2019/06/23"])
   })
 
 });

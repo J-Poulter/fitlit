@@ -1,44 +1,45 @@
 class Activity {
   constructor(activityData) {
     this.activityData = activityData,
-    this.milesWalked = 0,
-    this.metStepGoal = null;
+    this.goalMet = []
+
   }
 
   calculateMilesWalked(date, id) {
-    // let filteredUser = this.activityData.filter(user => user.userID === id);
-    // let getMiles = this.activityData.map(data => {
-    //   if(data.userID === id && data.date === date) {
-    //     let mile = data.numSteps * user.strideLength/5280;
-    //     console.log(this.user);
-    //     this.milesWalked += mile;
-    //     // console.log(this.user.strideLength);
-    //   }
-    //   return this.milesWalked
-    //   console.log(this.milesWalked)
-    // })
+
   }
 
 
 
   returnMinutesActive(date, id) {
-    return this.activityData.find(data => data.date === date).minutesActive
+    if(this.date === date && this.userID === id) {
+      return this.activityData.minutesActive
+    }
   }
+
   calculateWeeklyAverageMinutesActive(id) {
 
   }
 
-  calculateElevationClimbed(date, id) {
-
+  calculateElevationClimbed(date) {
+  return this.activityData.find(data => data.date === date).flightsOfStairs
   }
 
   returnBestStairDay(id) {
     //input = activityData.flightsOfStairs
-    //proto = .push // .find or .sort and shift b-a and shift highest
+    //.sort and shift b-a and shift highest
     //return date associated with highest stair count
   }
 
   evaluateIfStepGoalMet(date, id) {
+      let stepGoalAchieved = this.activityData.filter(data => {
+        if(data.userID === id && data.numSteps >= user.stepGoal) {
+          return true
+        } else {
+          return false
+          }
+        })
+      }
     //evaluates if step goal was met for any given day
     //input = stepGoal comparing to activityData.numSteps
     //output = boolean
@@ -46,16 +47,18 @@ class Activity {
     // //test should return boolean
     // if(user.dailystepGoal <= activity.numSteps) {
     //   return false
-    }
+
 
 
   returnDaysWhereStepGoalMet(id) {
-    //input = activtyData.date
-    //proto = .push//.filter
-    //output = [array of dates]
-    //test = []
+    let stepGoalMet = this.activityData.filter(data => {
+      if(data.userID === id && data.numSteps >= user.stepGoal) {
+        this.goalMet.push(this.activityData.date)
+        }
+      return this.goalMet;
+      })
+    }
   }
-}
 
 if (typeof module !== 'undefined') {
   module.exports = Activity;
