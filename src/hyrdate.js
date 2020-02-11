@@ -20,10 +20,15 @@ class Hydration {
      return dailyConsumption.numOunces;
   }
 
-  returnWeeklyConsumption(id) {
-    let week = this.hydrationData.filter(user => user.userID === id)
-    let sevenDays = week.slice((week.length, -7), week.length)
-    return sevenDays.map(user => user.numOunces)
+  returnWeeklyConsumption(week, id) {
+    let filteredUser = this.hydrationData.filter(user => user.userID === id);
+    // console.log(filteredUser);
+    let weeklyInfo = [];
+    week.forEach(day => {
+      weeklyInfo.push((filteredUser
+        .find(filtered => filtered.date.includes(day)).numOunces));
+    });
+    return weeklyInfo;
   }
 }
 
