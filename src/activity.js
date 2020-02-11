@@ -22,13 +22,8 @@ class Activity {
 
 
   returnMinutesActive(date, id) {
-    let minutesActive = this.activityData.map(data => {
-      if(data.userID === id && data.date === date) {
-        console.log(data.minutesActive);
-      }
-      return data.minutesActive
-  })
-}
+    return this.activityData.find(data => data.date === date).minutesActive
+  }
   calculateWeeklyAverageMinutesActive(id) {
 
   }
