@@ -1,30 +1,26 @@
 const userDashboard = document.querySelector('#user-dashboard');
+const hydrationDashboard = document.querySelector('#hydration-dashboard');
 const hydrateData = new Hydration(hydrationData);
 const activeData = new Activity(activityData);
 const sleepingData = new Sleep(sleepData);
 const userRepo = new UserRepository(userData);
 var randomIdNum;
+var targetUser;
 displayHomePage();
 
 function displayHomePage() {
   userDashboard.innerHTML = '';
-  instantiateUsers()
-}
-
-function instantiateUsers() {
-  userData.forEach(user => {
-    var person = new User(user);
-    // populateUsers(person);
-  })
+  hydrationDashboard.innerHTMl = '';
   generateRandomUser()
 }
 
 function generateRandomUser() {
   randomIdNum = Math.floor(Math.random() * 50 + 1);
-  var targetUser = userData.find(user => {
+  targetUser = userData.find(user => {
     return user.id === randomIdNum;
   })
-  populateUsers(targetUser)
+  populateUsers(targetUser);
+  displayWaterConsumedToday(randomIdNum, "2019/06/15");
 }
 
 function populateUsers(person) {
@@ -39,7 +35,11 @@ function populateUsers(person) {
   </div>`;
 }
 
-//We need to instantiate a new user
-
-//We will need to have a function that populates the cards and interpolates the user information.
-//This will happen on the click event of a friends profile.
+function displayWaterConsumedToday(id, date) {
+  let filteredUser = hydrationData.filter(user => user.userID === id);
+  let todaysIntake = filteredUser.find(filtered => filtered.date.includes(date)).numOunces
+    hydrationDashboard.innerHTML += `
+    <div>
+    <label>Today's water intake</label><p>${todaysIntake}</p>
+    </div>`;
+}
