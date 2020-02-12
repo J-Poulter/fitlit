@@ -113,7 +113,10 @@ class Activity {
     return friendsSteps;
   }
 
-  
+  // findUsersStepTrends(id) {
+  //   let filteredUser = this.activityData.filter(user => user.userID === id);
+  //
+  // }
 }
 
 if (typeof module !== 'undefined') {
