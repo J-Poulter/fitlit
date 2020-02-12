@@ -1,15 +1,14 @@
 class Hydration {
   constructor(hydrationData, userID) {
-    this.userID = userID;
     this.hydrationData = hydrationData
   }
 
-  calculateAverageTotalConsumption() {
-    return Math.floor(this.hydrationData.reduce((acc, cur) => {
-      console.log(cur.numOunces);
-      acc += cur.numOunces;
-      return acc;
-    }, 0 )) / this.hydrationData.length
+  calculateAverageTotalConsumption(id) {
+    let filteredUser = this.hydrationData.filter(user => user.userID === id);
+      return Math.floor(filteredUser.reduce((acc, cur) => {
+        acc += cur.numOunces;
+        return acc;
+      }, 0 )) / filteredUser.length
   }
 
   returnDailyConsumption(date, id) {
@@ -19,10 +18,13 @@ class Hydration {
      return dailyConsumption.numOunces;
   }
 
-  returnWeeklyConsumption(id) {
-    let week = this.hydrationData.filter(user => user.userID === id)
-    let sevenDays = week.slice((week.length, -7), week.length)
-    return sevenDays.map(user => user.numOunces)
+  returnWeeklyConsumption(week, id) {
+    let filteredUser = this.hydrationData.filter(user => user.userID === id);
+    let weeklyInfo = [];
+    week.forEach(day => {
+      weeklyInfo.push((filteredUser.find(filtered => filtered.date.includes(day)).numOunces));
+    });
+    return weeklyInfo;
   }
 }
 

@@ -21,7 +21,7 @@ describe('Hydration', function() {
         "numOunces": 69
       },
       {
-        "userID": 2,
+        "userID": 1,
         "date": "2019/06/17",
         "numOunces": 32
       },
@@ -78,7 +78,7 @@ describe('Hydration', function() {
   });
 
   it('should be able to calculate average total consumption', function() {
-    expect(hydration.calculateAverageTotalConsumption()).to.deep.equal(38.3);
+    expect(hydration.calculateAverageTotalConsumption(2)).to.deep.equal(51.5);
   })
 
   it('should be able to return users daily consumption', function() {
@@ -86,6 +86,6 @@ describe('Hydration', function() {
   })
 
   it('should be able to return users weekly consumption', function() {
-    expect(hydration.returnWeeklyConsumption(1)).to.deep.equal([37, 61, 76, 25, 14, 20, 15]);
+    expect(hydration.returnWeeklyConsumption(week1, 1)).to.deep.equal([37, 32, 61, 76, 25, 14, 20]);
   })
 })
