@@ -1,13 +1,17 @@
 const userDashboard = document.querySelector('#user-dashboard');
 const hydrationDashboard = document.querySelector('#hydration-dashboard');
+const sleepDashboard = document.querySelector('#sleep-dashboard');
 const hydrateData = new Hydration(hydrationData);
 const activeData = new Activity(activityData);
 const sleepingData = new Sleep(sleepData);
 const userRepo = new UserRepository(userData);
 var randomIdNum;
 var targetUser;
+const lastWeek = ['2019/09/16', '2019/09/17', '2019/09/18', '2019/09/19', '2019/09/20', '2019/09/21', '2019/09/22']
 const week1 = ['2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22'];
-const currentDate = "2019/09/22";
+const currentDate = "2019/09/19";
+const lastDay = "2019/09/22";
+
 
 displayHomePage();
 
@@ -25,6 +29,7 @@ function generateRandomUser() {
   populateUsers(targetUser);
   displayWaterConsumedToday();
   displayWeeklyWaterIntake();
+  displayDailySleepData();
 }
 
 function populateUsers(person) {
@@ -39,6 +44,8 @@ function populateUsers(person) {
   </div>`;
 }
 
+//hydration
+
 function displayWaterConsumedToday() {
     hydrationDashboard.innerHTML += `
     <div>
@@ -50,5 +57,24 @@ function displayWeeklyWaterIntake() {
   hydrationDashboard.innerHTML += `
   <div>
   <label>Weekly Consumption:</label><p>${hydrateData.returnWeeklyConsumption(week1, randomIdNum)}</p>
+  </div>`;
+}
+
+//sleep
+
+function displayDailySleepData() {
+  sleepDashboard.innerHTML += `
+  <div>
+  <label>Last Night's Sleep Quality:</label><p>${sleepingData.returnSleepQuality(randomIdNum, currentDate)}</p>
+  <label>Last Night's Hours Slept:</label><p>${sleepingData.returnUsersHoursSleptOnDay(randomIdNum, currentDate)}
+  </div>`;
+}
+
+
+function displayWeeklySleepData() {
+  sleepDashboard.innerHTML += `
+  <div>
+  <label>Weekly Sleep Quality:</label><p>${sleepingData.returnUsersSleepQualityForWeek(randomIdNum, lastWeek)}</p>
+  <label>Weekly Hours Slept:</label><p>${sleepingData.returnUsersHoursSleptForWeek(randomIdNum, lastWeek)}
   </div>`;
 }
