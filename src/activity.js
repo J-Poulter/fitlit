@@ -19,10 +19,9 @@ class Activity {
 
   calculateUserWeeksActiveAverage(week, id) {
     let weeksActiveValues = [];
-    let filteredUser = this.activityData.filter(user => user.userID === id);
     week.forEach(day => {
-      weeksActiveValues.push(filteredUser
-        .find(user => user.date === day).minutesActive);
+      weeksActiveValues.push(this.activityData
+        .find(user => user.userID === id && user.date === day).minutesActive);
       });
     let weeksTotal = weeksActiveValues.reduce((acc, cur) => {
       acc += cur;
@@ -91,8 +90,7 @@ class Activity {
 
   calculateTotalStepCountForWeek(week, id) {
     let weeksStepCounts = [];
-    let filteredUser = this.activityData.filter(user => user.userID === id);
-    week.forEach(day => weeksStepCounts.push((filteredUser.find(user => user.userID === id && user.date === day)).numSteps));
+    week.forEach(day => weeksStepCounts.push((this.activityData.find(user => user.userID === id && user.date === day)).numSteps));
     let totalSteps = weeksStepCounts.reduce((acc, cur) => {
       acc += cur
       return acc;
@@ -113,10 +111,31 @@ class Activity {
     return friendsSteps;
   }
 
-  // findUsersStepTrends(id) {
-  //   let filteredUser = this.activityData.filter(user => user.userID === id);
-  //
-  // }
+  findUsersStepTrends(week, id) {
+    let filteredUser = [];
+    var currentTrend = [];
+    var largestTrend = [];
+    var currentSteps = 0
+    week.forEach(day => filteredUser.push(this.activityData.find(user => user.userID === id && user.date === day)));
+    filteredUser.forEach(user => {
+      if (user.numSteps > currentSteps) {
+        currentTrend.push(user.date)
+        if (currentTrend.length > 2) {
+          largestTrend = currentTrend
+        }
+      }
+      else {
+        currentTrend = [user.date];
+      }
+      currentSteps = user.numSteps
+    })
+    if (largestTrend.length > 0) {
+      return largestTrend;
+    }
+    else {
+      return 'Sorry, looks like you do not have a three day increasing trend for this week!'
+    }
+  }
 }
 
 if (typeof module !== 'undefined') {

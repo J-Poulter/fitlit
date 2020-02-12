@@ -32,22 +32,20 @@ class Sleep {
   }
 
   returnUsersHoursSleptForWeek(usersId, week) {
-    let filteredUser = this.sleepData.filter(user => user.userID === usersId);
     let weeksInfo = [];
     week.forEach(day => {
-      weeksInfo.push(filteredUser
-        .find(filtered => filtered.date === day).hoursSlept);
+      weeksInfo.push(this.sleepData
+        .find(filtered => filtered.userID === usersId && filtered.date === day).hoursSlept);
     });
     return weeksInfo;
   }
 
 
   returnUsersSleepQualityForWeek(usersId, week) {
-    let filteredUser = this.sleepData.filter(user => user.userID === usersId);
     let weeksInfo = [];
     week.forEach(day => {
-      weeksInfo.push(filteredUser
-        .find(filtered => filtered.date === day).sleepQuality);
+      weeksInfo.push(this.sleepData
+        .find(filtered => filtered.userID === usersId && filtered.date === day).sleepQuality);
     });
     return weeksInfo;
   }
