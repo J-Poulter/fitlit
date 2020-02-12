@@ -1,50 +1,92 @@
 class Activity {
   constructor(activityData) {
-    this.userID = activityData.userId,
-    this.date = activityData.date,
-    this.numSteps = activityData.numSteps,
-    this.minutesActive = activityData.minutesActive,
-    this.flightsOfStairs = activityData.flightsOfStairs
+    this.activityData = activityData;
   }
 
-  calculateMilesWalked() {
-
+  calculateMilesWalked(day, id, userData) {
+    let usersStride = userData.find(user => user.id === id).strideLength;
+    let filteredUser = this.activityData.find(user => user.userID === id && user.date === day);
+    let miles = (filteredUser.numSteps * usersStride) / 5280 / 2;
+    let milesRounded = Number(miles.toFixed(2));
+    return milesRounded;
   }
 
-  returnMinutesActive() {
-
+  returnUserMinutesActiveOnDay(day, id) {
+    let filteredUser = this.activityData.find(user => user.userID === id && user.date ===day);
+    return filteredUser.minutesActive;
   }
 
-  calcWeeksActiveAverage() {
 
+  calculateUserWeeksActiveAverage(week, id) {
+    let weeksActiveValues = [];
+    let filteredUser = this.activityData.filter(user => user.userID === id);
+    week.forEach(day => {
+      weeksActiveValues.push(filteredUser
+        .find(user => user.date === day).minutesActive);
+      });
+    let weeksTotal = weeksActiveValues.reduce((acc, cur) => {
+      acc += cur;
+      return acc;
+    }, 0);
+    return Number((weeksTotal / weeksActiveValues.length).toFixed(2));
   }
 
-  calculateElevationClimbed() {
 
+  returnBestStairDay(id) {
+    let filteredUser = this.activityData.filter(user => user.userID === id);
+    return filteredUser.reduce((acc,cur) => {
+      return (acc.flightsOfStairs > cur.flightsOfStairs) ? acc : cur;
+    }, {}).date
   }
 
-  returnBestStairDay() {
-    //input = activityData.flightsOfStairs
-    //proto = .push // .find or .sort and shift b-a and shift highest
-    //return date associated with highest stair count
+  evaluateIfUserStepGoalMetOnDay(day, id, userData) {
+    let targetUser = this.activityData.find(user => user.userID === id && user.date === day);
+    let usersGoal = userData.find(user => user.id === id).dailyStepGoal;
+    return (targetUser.numSteps > usersGoal) ? true : false;
   }
 
-  evaluateIfStepGoalMet() {
-    //evaluates if step goal was met for any given day
-    //input = stepGoal comparing to activityData.numSteps
-    //output = boolean
-    //if true call returnDaysWhereStepGoalMet()
-    //test should return boolean
-    if(user.dailystepGoal <= activity.numSteps) {
-      return false
-    }
+  returnUsersDaysWhereStepGoalMet(id, userData) {
+    let goalMetDays = [];
+    let targetUser = this.activityData.filter(user => user.userID === id);
+    let usersGoal = userData.find(user => user.id === id).dailyStepGoal;
+    targetUser.forEach(user => {
+      if (user.numSteps > usersGoal) {
+        goalMetDays.push(user.date)
+      };
+    });
+    return goalMetDays;
   }
 
-  returnDaysWhereStepGoalMet() {
-    //input = activtyData.date
-    //proto = .push//.filter
-    //output = [array of dates]
-    //test = []
+  calculateUserElevationClimbedInFeetOnDay(day, id) {
+    let targetUser = this.activityData.find(user => user.userID === id && user.date === day);
+    return targetUser.flightsOfStairs * 12;
+  }
+
+  calculateOverallAverageStairsClimbedOnDay(day) {
+    let filteredUsers = this.activityData.filter(user => user.userID === id);
+    let totalStairs = filteredUsers.reduce((acc, cur) => {
+      acc += user.flightsOfStairs;
+      return acc;
+    }, 0);
+    return Number((totalStairs / filteredUser.length).toFixed(2));
+  }
+
+  calculateOverallAverageStepsTakenOnDay(day) {
+    let filteredUsers = this.activityData.filter(user => user.userID === id);
+    let totalSteps = filteredUsers.reduce((acc, cur) => {
+      acc += user.numSteps;
+      return acc;
+    }, 0);
+    return Number((totalSteps / filteredUser.length).toFixed(2));
+  }
+
+  calculateOverallAverageMinutesActiveOnDay(day) {
+    let filteredUsers = this.activityData.filter(user => user.userID === id);
+    let totalActiveMinutes = filteredUsers.reduce((acc, cur) => {
+      acc += user.flightsOfStairs;
+      return acc;
+    }, 0);
+    return Number((totalActiveMinutes / filteredUser.length).toFixed(2));
   }
 }
 

@@ -47,34 +47,34 @@ describe('UserRepository', function() {
       "dailyStepGoal": 4000,
       "friends": [1, 2, 3]
     });
-    activity1 = new Activity({
+    activity1 = {
       "userID": 1,
       "date": "2019/06/15",
       "numSteps": 3577,
       "minutesActive": 140,
       "flightsOfStairs": 16
-    });
-    activity2 = new Activity({
+    };
+    activity2 = {
       "userID": 2,
       "date": "2019/06/15",
       "numSteps": 4294,
       "minutesActive": 138,
       "flightsOfStairs": 10
-    });
-    activity3 = new Activity({
+    };
+    activity3 = {
       "userID": 3,
       "date": "2019/06/15",
       "numSteps": 7402,
       "minutesActive": 116,
       "flightsOfStairs": 33
-    });
-    activity4 = new Activity({
+    };
+    activity4 = {
       "userID": 4,
       "date": "2019/06/15",
       "numSteps": 3486,
       "minutesActive": 114,
       "flightsOfStairs": 32
-    });
+    };
     sleepData = [
     {
       "userID": 1,

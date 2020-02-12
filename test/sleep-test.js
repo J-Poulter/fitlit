@@ -5,7 +5,7 @@ const Sleep = require('../src/sleep');
 
 describe('Sleep', function() {
 
-  let sleepData, week;
+  let sleepData, week, week2;
 
   beforeEach(function() {
     sleepData = new Sleep([
@@ -120,9 +120,9 @@ describe('Sleep', function() {
   ]);
 
   week = ['2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22'];
+  week2 = ['2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22', '2019/06/23'];
   });
 
-  week2 = ['2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22', '2019/06/23'];
 
   it('should be a function', function() {
     expect(Sleep).to.be.a('function');
