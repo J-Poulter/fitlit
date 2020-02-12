@@ -136,6 +136,32 @@ class Activity {
       return 'Sorry, looks like you do not have a three day increasing trend for this week!'
     }
   }
+
+  findUsersActiveTrends(week, id) {
+    let filteredUser = [];
+    var currentTrend = [];
+    var largestTrend = [];
+    var currentMinutes = 0
+    week.forEach(day => filteredUser.push(this.activityData.find(user => user.userID === id && user.date === day)));
+    filteredUser.forEach(user => {
+      if (user.minutesActive > currentMinutes) {
+        currentTrend.push(user.date)
+        if (currentTrend.length > 2) {
+          largestTrend = currentTrend
+        }
+      }
+      else {
+        currentTrend = [user.date];
+      }
+      currentMinutes = user.minutesActive
+    })
+    if (largestTrend.length > 0) {
+      return largestTrend;
+    }
+    else {
+      return 'Sorry, looks like you do not have three consective days with increasing minutesActive for this week!'
+    }
+  }
 }
 
 if (typeof module !== 'undefined') {
