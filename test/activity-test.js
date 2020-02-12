@@ -204,15 +204,15 @@ describe('Activity', function() {
     expect(activityData.calculateUserElevationClimbedInFeetOnDay('2019/06/18', 1)).to.deep.equal(396);
   });
 
-  it.skip('should be able to calculate the overall average stairs climbed among all users on a given day', function() {
+  it('should be able to calculate the overall average stairs climbed among all users on a given day', function() {
     expect(activityData.calculateOverallAverageStairsClimbedOnDay('2019/06/17')).to.deep.equal(11);
   });
 
-  it.skip('should be able to calculate the overall average steps taken among all users on a given day', function() {
+  it('should be able to calculate the overall average steps taken among all users on a given day', function() {
     expect(activityData.calculateOverallAverageStepsTakenOnDay('2019/06/18')).to.deep.equal(4540.5);
   });
 
-  it.skip('should be able to calculate the overall average minutes active among all users on a given day', function() {
+  it('should be able to calculate the overall average minutes active among all users on a given day', function() {
     expect(activityData.calculateOverallAverageMinutesActiveOnDay('2019/06/19')).to.deep.equal(259);
   });
 });
