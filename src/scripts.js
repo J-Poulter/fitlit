@@ -1,9 +1,12 @@
 const userDashboard = document.querySelector('#user-dashboard');
-
+const hydrateData = new Hydration(hydrationData);
+const activeData = new Activity(activityData);
+const sleepingData = new Sleep(sleepData);
+const userRepo = new UserRepository(userData);
 var randomIdNum;
 displayHomePage();
-function displayHomePage() {
 
+function displayHomePage() {
   userDashboard.innerHTML = '';
   instantiateUsers()
 }
