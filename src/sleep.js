@@ -73,7 +73,6 @@ class Sleep {
         qualitySleepers.push(`userID ${id} has a SQ of ${this.returnUsersAverageSleepQualityForWeek(id, week)}!`)
       };
     });
-    console.log(qualitySleepers)
     return qualitySleepers;
   }
 
