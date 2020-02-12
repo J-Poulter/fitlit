@@ -123,12 +123,12 @@ function displayMilesWalked() {
 //minutes active
 //flights of stairs
 
-// function displayStepComparison(id, date) {
-//   let filteredUser = activityData.filter(user => user.userID === id);
-//   let filteredDay = filteredUser.find(user => user.date === date);
-//   activityDashboard.innerHTML += `
-//   <div>
-//   <label>Your Steps:</label><p>${filteredDay.numSteps}</p>
-//   <label>Community Steps:</label><p>${activeData.calculateOverallAverageStepsTakenOnDay(currentDate)}
-//   </div>`;
-// }
+function displayStepComparison(id, date) {
+  let filteredUser = activityData.filter(user => user.userID === id);
+  let filteredDay = filteredUser.find(user => user.date === date);
+  activityDashboard.innerHTML += `
+  <div>
+  <label>Your Steps:</label><p>${filteredDay.numSteps}</p>
+  <label>Community Steps:</label><p>${activeData.calculateOverallAverageStepsTakenOnDay(currentDate)}
+  </div>`;
+}
