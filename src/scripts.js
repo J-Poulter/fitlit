@@ -36,7 +36,9 @@ function generateRandomUser() {
   displayTodaysSteps(randomIdNum, currentDate);
   displayMinutesActive();
   displayMilesWalked();
-  displayStepComparison(randomIdNum, currentDate)
+  displayStepComparison(randomIdNum, currentDate);
+  displayMinutesActiveComparison();
+  displayStairComparison(randomIdNum, currentDate);
 }
 
 function populateUsers(person) {
@@ -119,10 +121,6 @@ function displayMilesWalked() {
   </div>`;
 }
 
-//num of numSteps
-//minutes active
-//flights of stairs
-
 function displayStepComparison(id, date) {
   let filteredUser = activityData.filter(user => user.userID === id);
   let filteredDay = filteredUser.find(user => user.date === date);
@@ -130,5 +128,23 @@ function displayStepComparison(id, date) {
   <div>
   <label>Your Steps:</label><p>${filteredDay.numSteps}</p>
   <label>Community Steps:</label><p>${activeData.calculateOverallAverageStepsTakenOnDay(currentDate)}
+  </div>`;
+}
+
+function displayMinutesActiveComparison() {
+  activityDashboard.innerHTML += `
+  <div>
+  <label>Your Minutes Active:</label><p>${activeData.returnUserMinutesActiveOnDay(currentDate, randomIdNum)}</p>
+  <label>Community Minutes Active:</label><p>${activeData.calculateOverallAverageMinutesActiveOnDay(currentDate)}
+  </div>`;
+}
+
+function displayStairComparison(id, date) {
+  let filteredUser = activityData.filter(user => user.userID === id);
+  let filteredDay = filteredUser.find(user => user.date === date);
+  activityDashboard.innerHTML += `
+  <div>
+  <label>Your Stairs:</label><p>${filteredDay.flightsOfStairs}</p>
+  <label>Community Stairs:</label><p>${activeData.calculateOverallAverageStairsClimbedOnDay(currentDate)}
   </div>`;
 }
