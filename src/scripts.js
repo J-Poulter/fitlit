@@ -33,7 +33,9 @@ function generateRandomUser() {
   displayDailySleepData();
   displayWeeklySleepData();
   displayTotalAverageSleepData();
-  displayTodaysSteps(randomIdNum, currentDate)
+  displayTodaysSteps(randomIdNum, currentDate);
+  displayMinutesActive();
+  displayMilesWalked()
 }
 
 function populateUsers(person) {
@@ -96,9 +98,22 @@ function displayTotalAverageSleepData() {
 function displayTodaysSteps(id, date) {
   let filteredUser = activityData.filter(user => user.userID === id);
   let filteredDay = filteredUser.find(user => user.date === date);
-  console.log(filteredDay);
   activityDashboard.innerHTML += `
   <div>
   <label>Today's Step Count:</label><p>${filteredDay.numSteps}</p>
+  </div>`;
+}
+
+function displayMinutesActive() {
+  activityDashboard.innerHTML += `
+  <div>
+  <label>Today's Minutes Active:</label><p>${activeData.returnUserMinutesActiveOnDay(currentDate, randomIdNum)}</p>
+  </div>`;
+}
+
+function displayMilesWalked() {
+  activityDashboard.innerHTML += `
+  <div>
+  <label>Miles Walked Today:</label><p>${activeData.calculateMilesWalked(currentDate, randomIdNum, userData)}</p>
   </div>`;
 }
