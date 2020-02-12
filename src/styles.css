@@ -1,4 +1,133 @@
 body {
-  background-color: purple;
-  
+  /* background-color: #FFE5D8; */
+  font-family: 'Poppins', sans-serif;
+  color: #FFFFFF;
+  background: rgb(74,60,254);
+  background: linear-gradient(90deg, rgba(74,60,254,1) 0%, rgba(29,253,226,1) 50%, rgba(0,255,31,1) 100%);
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  font-family: 'Luckiest Guy', sans-serif;
+}
+#user-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "one . two . three"
+    "four . five  six  seven"
+    ". eight nine ten eleven";
+  margin: 2%;
+}
+
+#user-info{
+  background-color: #FD8F52;
+  grid-area: one;
+  height: 50%;
+  padding: 5%;
+  border-radius: 5%;
+  box-shadow: 10px 5px 5px rebeccapurple;
+}
+
+.waterIntake {
+  background-color: #3C4CAD;
+  grid-area: two;
+  margin-left: 10.5%;
+  margin-bottom: 5%;
+  border-radius: 5%;
+  padding: 5%;
+  box-shadow: 10px 5px 5px rebeccapurple;
+}
+
+#dailySleep {
+  background-color: #240E8B;
+  grid-area: three;
+  margin-left: 10.5%;
+  margin-bottom: 5%;
+  border-radius: 5%;
+  padding: 5%;
+  box-shadow: 10px 5px 5px rebeccapurple;
+}
+
+#weeklySleep {
+  background-color: #240E8B;
+  grid-area: four;
+  margin-left: 10.5%;
+  margin-bottom: 5%;
+  border-radius: 5%;
+  padding: 5%;
+  box-shadow: 10px 5px 5px rebeccapurple;
+}
+
+#averageSleep {
+  background-color: #240E8B;
+  grid-area: five;
+  margin-left: 10.5%;
+  margin-bottom: 5%;
+  border-radius: 5%;
+  padding: 5%;
+  box-shadow: 10px 5px 5px rebeccapurple;
+}
+
+#dailyStep {
+  background-color: #F9C449;
+  grid-area: six;
+  margin-left: 10.5%;
+  margin-bottom: 5%;
+  border-radius: 5%;
+  padding: 5%;
+  box-shadow: 10px 5px 5px rebeccapurple;
+}
+
+#dailyMinutes {
+  background-color: #F9C449;
+  grid-area: seven;
+  margin-left: 10.5%;
+  margin-bottom: 5%;
+  border-radius: 5%;
+  padding: 5%;
+  box-shadow: 10px 5px 5px rebeccapurple;
+}
+
+#milesWalked {
+  background-color: #F9C449;
+  grid-area: eight;
+  margin-left: 10.5%;
+  margin-bottom: 5%;
+  border-radius: 5%;
+  padding: 5%;
+  box-shadow: 10px 5px 5px rebeccapurple;
+}
+
+#stepComp {
+  background-color: #F04393;
+  grid-area: nine;
+  margin-left: 10.5%;
+  margin-bottom: 5%;
+  border-radius: 5%;
+  padding: 5%;
+  box-shadow: 10px 5px 5px rebeccapurple;
+}
+
+#activeComp {
+  background-color: #F04393;
+  grid-area: ten;
+  margin-left: 10.5%;
+  margin-bottom: 5%;
+  border-radius: 5%;
+  padding: 5%;
+  box-shadow: 10px 5px 5px rebeccapurple;
+}
+
+#stairComp {
+  background-color: #F04393;
+  grid-area: eleven;
+  margin-left: 10.5%;
+  margin-bottom: 5%;
+  border-radius: 5%;
+  padding: 5%;
+  box-shadow: 10px 5px 5px rebeccapurple;
 }
