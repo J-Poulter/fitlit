@@ -6,7 +6,7 @@ const User = require('../src/user');
 const UserRepository = require('../src/userRepository');
 
 describe('Activity', function() {
-  let activityData, user1, user2, week, userData;
+  let activityData, user1, user2, user3, week, userData;
 
   beforeEach(function() {
 
@@ -136,7 +136,7 @@ describe('Activity', function() {
         "numSteps": 4148,
         "minutesActive": 142,
         "flightsOfStairs": 0
-      }
+      },
     ]);
 
 
@@ -158,10 +158,19 @@ describe('Activity', function() {
         "dailyStepGoal": 5000,
         "friends": [1, 3, 4]
       });
+      user3 = new User({
+        "id": 3,
+        "name": "Herminia Witting",
+        "address": "85823 Bosco Fork, East Oscarstad MI 85126-5660",
+        "email": "Elwin.Tromp@yahoo.com",
+        "strideLength": 4.4,
+        "dailyStepGoal": 5000,
+        "friends": [1, 2]
+      });
 
 
       week = ['2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22']
-      userData = [user1, user2];
+      userData = [user1, user2, user3];
   });
 
   it('should be a function', function() {
@@ -215,4 +224,25 @@ describe('Activity', function() {
   it('should be able to calculate the overall average minutes active among all users on a given day', function() {
     expect(activityData.calculateOverallAverageMinutesActiveOnDay('2019/06/19')).to.deep.equal(259);
   });
+
+  it('should be able to calculate an individuals total step count for the week', function() {
+    expect(activityData.calculateTotalStepCountForWeek(week, 1)).to.deep.equal(65341);
+  });
+
+  it('should be able to return a users friends total steps counts for a given week', function() {
+    expect(activityData.returnFriendsStepCounts(week, 3, userData)).to.deep.equal([{
+      FriendsId: 1,
+      FriendsName: 'Luisa Hane',
+      FriendsTotalSteps: 65341
+    },
+    {
+      FriendsId: 2,
+      FriendsName: 'Jarvis Considine',
+      FriendsTotalSteps: 54365
+    }]);
+  });
+
+  it('should be able to find trends of a user where their step count increased for 3 or more days', function() {
+    expect(activityData.findUsersStepTrends(1).to.deep.equal())
+  })
 });

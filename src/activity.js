@@ -88,6 +88,35 @@ class Activity {
     }, 0);
     return Number((totalActiveMinutes / filteredUsers.length).toFixed(2));
   }
+
+  calculateTotalStepCountForWeek(week, id) {
+    let weeksStepCounts = [];
+    let filteredUser = this.activityData.filter(user => user.userID === id);
+    week.forEach(day => weeksStepCounts.push((filteredUser.find(user => user.userID === id && user.date === day)).numSteps));
+    let totalSteps = weeksStepCounts.reduce((acc, cur) => {
+      acc += cur
+      return acc;
+    })
+    return totalSteps;
+  }
+
+  returnFriendsStepCounts(week, id, userData) {
+    let friendsSteps = [];
+    let filteredUser = userData.find(user => user.id === id);
+    friendsSteps = filteredUser.friends.map(friend => {
+      return {
+        FriendsId: friend,
+        FriendsName: userData.find(user => user.id === friend).name,
+        FriendsTotalSteps: this.calculateTotalStepCountForWeek(week, friend)
+      }
+    })
+    return friendsSteps;
+  }
+
+  // findUsersStepTrends(id) {
+  //   let filteredUser = this.activityData.filter(user => user.userID === id);
+  //
+  // }
 }
 
 if (typeof module !== 'undefined') {
