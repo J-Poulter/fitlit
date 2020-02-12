@@ -14,12 +14,12 @@ h1 {
 }
 #user-dashboard {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas:
-    "one . two . three"
-    "four . five  six  seven"
-    ". eight nine ten eleven";
+    "one . two . three ."
+    "four . five  six .  seven"
+    "twelve eight nine  . ten eleven";
   margin: 2%;
 }
 
@@ -125,6 +125,16 @@ h1 {
 #stairComp {
   background-color: #F04393;
   grid-area: eleven;
+  margin-left: 10.5%;
+  margin-bottom: 5%;
+  border-radius: 5%;
+  padding: 5%;
+  box-shadow: 10px 5px 5px rebeccapurple;
+}
+
+#stepTrend {
+  background-color: #F04393;
+  grid-area: twelve;
   margin-left: 10.5%;
   margin-bottom: 5%;
   border-radius: 5%;
