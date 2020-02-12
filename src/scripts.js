@@ -1,16 +1,17 @@
 const userDashboard = document.querySelector('#user-dashboard');
 const hydrationDashboard = document.querySelector('#hydration-dashboard');
 const sleepDashboard = document.querySelector('#sleep-dashboard');
+const activityDashboard = document.querySelector('#activity-dashboard');
 const hydrateData = new Hydration(hydrationData);
 const activeData = new Activity(activityData);
 const sleepingData = new Sleep(sleepData);
 const userRepo = new UserRepository(userData);
-var randomIdNum;
-var targetUser;
+let randomIdNum;
+let targetUser;
 const lastWeek = ['2019/09/16', '2019/09/17', '2019/09/18', '2019/09/19', '2019/09/20', '2019/09/21', '2019/09/22']
 const week1 = ['2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22'];
-const currentDate = "2019/09/19";
-const lastDay = "2019/09/22";
+const currentDate = '2019/09/19';
+const lastDay = '2019/09/22';
 
 
 displayHomePage();
@@ -30,7 +31,9 @@ function generateRandomUser() {
   displayWaterConsumedToday();
   displayWeeklyWaterIntake();
   displayDailySleepData();
-  displayWeeklySleepData()
+  displayWeeklySleepData();
+  displayTotalAverageSleepData();
+  displayTodaysSteps(randomIdNum, currentDate)
 }
 
 function populateUsers(person) {
@@ -77,5 +80,25 @@ function displayWeeklySleepData() {
   <div>
   <label>Weekly Sleep Quality:</label><p>${sleepingData.returnUsersSleepQualityForWeek(randomIdNum, lastWeek)}</p>
   <label>Weekly Hours Slept:</label><p>${sleepingData.returnUsersHoursSleptForWeek(randomIdNum, lastWeek)}
+  </div>`;
+}
+
+function displayTotalAverageSleepData() {
+  sleepDashboard.innerHTML += `
+  <div>
+  <label>Average Sleep Quality:</label><p>${sleepingData.calculateUsersAverageSleepQuality(randomIdNum)}</p>
+  <label>Average Hours Slept:</label><p>${sleepingData.calculateAverageHoursSlept(randomIdNum)}
+  </div>`;
+}
+
+//activity
+
+function displayTodaysSteps(id, date) {
+  let filteredUser = activityData.filter(user => user.userID === id);
+  let filteredDay = filteredUser.find(user => user.date === date);
+  console.log(filteredDay);
+  activityDashboard.innerHTML += `
+  <div>
+  <label>Today's Step Count:</label><p>${filteredDay.numSteps}</p>
   </div>`;
 }
