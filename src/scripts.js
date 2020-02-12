@@ -1,4 +1,4 @@
-const userDashboard = document.querySelector('#user-dashboard');
+const userInfo = document.querySelector('#user-info');
 const hydrationDashboard = document.querySelector('#hydration-dashboard');
 const sleepDashboard = document.querySelector('#sleep-dashboard');
 const activityDashboard = document.querySelector('#activity-dashboard');
@@ -13,31 +13,10 @@ const week1 = ['2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/
 const currentDate = '2019/09/19';
 const lastDay = '2019/09/22';
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
-
-    // The data for our dataset
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
-
-
 displayHomePage();
 
 function displayHomePage() {
-  userDashboard.innerHTML = '';
+  userInfo.innerHTML = '';
   hydrationDashboard.innerHTMl = '';
   generateRandomUser()
 }
@@ -63,7 +42,7 @@ function generateRandomUser() {
 
 function populateUsers(person) {
   var person1 = new User(person);
-  userDashboard.innerHTML += `
+  userInfo.innerHTML += `
   <header>Hi, ${person1.returnFirstName()}!</header>
   <div id="userInfo">
     <label>Name: </label><p>${person.name}</p>
