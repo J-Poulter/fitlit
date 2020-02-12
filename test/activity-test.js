@@ -246,7 +246,15 @@ describe('Activity', function() {
     expect(activityData.findUsersStepTrends(week, 1)).to.deep.equal(['2019/06/18', '2019/06/19', '2019/06/20'])
   })
 
+  it('should be able to inform user with a message if it was unable to find a trend that week of increasing step count', function() {
+    expect(activityData.findUsersStepTrends(week, 2)).to.deep.equal('Sorry, looks like you do not have a three day increasing trend for this week!')
+  })
+
   it('should be able to find trends of a user where their minutes active increased across 3 or more days', function() {
     expect(activityData.findUsersActiveTrends(week, 2)).to.deep.equal(['2019/06/17', '2019/06/18', '2019/06/19'])
+  })
+
+  it('should be able to inform user with a message if it was unable to find a trend that week of increasing minutes active', function() {
+    expect(activityData.findUsersActiveTrends(week, 1)).to.deep.equal('Sorry, looks like you do not have three consective days with increasing minutesActive for this week!')
   })
 });
