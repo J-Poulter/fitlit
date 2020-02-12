@@ -1,5 +1,6 @@
 const userInfo = document.querySelector('#user-info');
 const hydrationDashboard = document.querySelector('#hydration-dashboard');
+const communityDashboard = document.querySelector('#community-dashboard');
 const sleepDashboard = document.querySelector('#sleep-dashboard');
 const activityDashboard = document.querySelector('#activity-dashboard');
 const hydrateData = new Hydration(hydrationData);
@@ -38,6 +39,7 @@ function generateRandomUser() {
   displayStepComparison(randomIdNum, currentDate);
   displayMinutesActiveComparison();
   displayStairComparison(randomIdNum, currentDate);
+  displayStepTrend();
 }
 
 function populateUsers(person) {
@@ -123,7 +125,7 @@ function displayMilesWalked() {
 function displayStepComparison(id, date) {
   let filteredUser = activityData.filter(user => user.userID === id);
   let filteredDay = filteredUser.find(user => user.date === date);
-  activityDashboard.innerHTML += `
+  communityDashboard.innerHTML += `
   <div id="stepComp">
   <label>Your Steps:</label><p>${filteredDay.numSteps}</p>
   <label>Community Steps:</label><p>${activeData.calculateOverallAverageStepsTakenOnDay(currentDate)}
@@ -131,7 +133,7 @@ function displayStepComparison(id, date) {
 }
 
 function displayMinutesActiveComparison() {
-  activityDashboard.innerHTML += `
+  communityDashboard.innerHTML += `
   <div id="activeComp">
   <label>Your Minutes Active:</label><p>${activeData.returnUserMinutesActiveOnDay(currentDate, randomIdNum)}</p>
   <label>Community Minutes Active:</label><p>${activeData.calculateOverallAverageMinutesActiveOnDay(currentDate)}
@@ -141,9 +143,16 @@ function displayMinutesActiveComparison() {
 function displayStairComparison(id, date) {
   let filteredUser = activityData.filter(user => user.userID === id);
   let filteredDay = filteredUser.find(user => user.date === date);
-  activityDashboard.innerHTML += `
+  communityDashboard.innerHTML += `
   <div id="stairComp">
   <label>Your Stairs:</label><p>${filteredDay.flightsOfStairs}</p>
   <label>Community Stairs:</label><p>${activeData.calculateOverallAverageStairsClimbedOnDay(currentDate)}
+  </div>`;
+}
+
+function displayStepTrend() {
+  communityDashboard.innerHTML += `
+  <div id="stepTrend">
+  <label>Your Stairs:</label><p>${activeData.findUsersStepTrends(week1, randomIdNum)}</p>
   </div>`;
 }
