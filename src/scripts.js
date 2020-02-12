@@ -6,6 +6,9 @@ const sleepingData = new Sleep(sleepData);
 const userRepo = new UserRepository(userData);
 var randomIdNum;
 var targetUser;
+const week1 = ['2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/20', '2019/06/21', '2019/06/22'];
+const currentDate = "2019/09/22";
+
 displayHomePage();
 
 function displayHomePage() {
@@ -20,7 +23,8 @@ function generateRandomUser() {
     return user.id === randomIdNum;
   })
   populateUsers(targetUser);
-  displayWaterConsumedToday(randomIdNum, "2019/06/15");
+  displayWaterConsumedToday();
+  displayWeeklyWaterIntake();
 }
 
 function populateUsers(person) {
@@ -35,11 +39,16 @@ function populateUsers(person) {
   </div>`;
 }
 
-function displayWaterConsumedToday(id, date) {
-  let filteredUser = hydrationData.filter(user => user.userID === id);
-  let todaysIntake = filteredUser.find(filtered => filtered.date.includes(date)).numOunces
+function displayWaterConsumedToday() {
     hydrationDashboard.innerHTML += `
     <div>
-    <label>Today's water intake</label><p>${todaysIntake}</p>
+    <label>Today's water intake:</label><p>${hydrateData.returnDailyConsumption(currentDate, randomIdNum)}</p>
     </div>`;
+}
+
+function displayWeeklyWaterIntake() {
+  hydrationDashboard.innerHTML += `
+  <div>
+  <label>Weekly Consumption:</label><p>${hydrateData.returnWeeklyConsumption(week1, randomIdNum)}</p>
+  </div>`;
 }
