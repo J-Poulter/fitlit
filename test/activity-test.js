@@ -243,6 +243,6 @@ describe('Activity', function() {
   });
 
   it('should be able to find trends of a user where their step count increased across 3 or more days', function() {
-    expect(activityData.findUsersStepTrends(week, 2)).to.deep.equal(['2019/06/18', '2019/06/19', '2019/06/20'])
+    expect(activityData.findUsersStepTrends(week, 1)).to.deep.equal(['2019/06/18', '2019/06/19', '2019/06/20'])
   })
 });
