@@ -1,4 +1,49 @@
 body {
-  background-color: purple;
-  
+  background-color: #FFE5D8;
+  font-family: 'Lato', sans-serif;
+  color: #FFFFFF;
+}
+
+#user-dashboard {
+  background-color: #FD8F52;
+}
+
+.waterIntake {
+  background-color: #3C4CAD;
+}
+
+#dailySleep {
+  background-color: #240E8B;
+}
+
+#weeklySleep {
+  background-color: #240E8B;
+}
+
+#averageSleep {
+  background-color: #240E8B;
+}
+
+#dailyStep {
+  background-color: #F9C449;
+}
+
+#dailyMinutes {
+  background-color: #F9C449;
+}
+
+#milesWalked {
+  background-color: #F9C449;
+}
+
+#stepComp {
+  background-color: #F04393;
+}
+
+#activeComp {
+  background-color: #F04393;
+}
+
+#stairComp {
+  background-color: #F04393;
 }
