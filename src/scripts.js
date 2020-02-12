@@ -13,6 +13,26 @@ const week1 = ['2019/06/16', '2019/06/17', '2019/06/18', '2019/06/19', '2019/06/
 const currentDate = '2019/09/19';
 const lastDay = '2019/09/22';
 
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
 
 displayHomePage();
 
@@ -45,7 +65,7 @@ function populateUsers(person) {
   var person1 = new User(person);
   userDashboard.innerHTML += `
   <header>Hi, ${person1.returnFirstName()}!</header>
-  <div>
+  <div id="userInfo">
     <label>Name: </label><p>${person.name}</p>
     <label>ID: </label><p>${randomIdNum}</p>
     <label>Address: </label><p>${person.address}</p>
@@ -57,14 +77,14 @@ function populateUsers(person) {
 
 function displayWaterConsumedToday() {
     hydrationDashboard.innerHTML += `
-    <div>
+    <div class="waterIntake">
     <label>Today's water intake:</label><p>${hydrateData.returnDailyConsumption(currentDate, randomIdNum)}</p>
     </div>`;
 }
 
 function displayWeeklyWaterIntake() {
   hydrationDashboard.innerHTML += `
-  <div>
+  <div class="waterIntake">
   <label>Weekly Consumption:</label><p>${hydrateData.returnWeeklyConsumption(week1, randomIdNum)}</p>
   </div>`;
 }
@@ -73,7 +93,7 @@ function displayWeeklyWaterIntake() {
 
 function displayDailySleepData() {
   sleepDashboard.innerHTML += `
-  <div>
+  <div id="dailySleep">
   <label>Last Night's Sleep Quality:</label><p>${sleepingData.returnSleepQuality(randomIdNum, currentDate)}</p>
   <label>Last Night's Hours Slept:</label><p>${sleepingData.returnUsersHoursSleptOnDay(randomIdNum, currentDate)}
   </div>`;
@@ -82,7 +102,7 @@ function displayDailySleepData() {
 
 function displayWeeklySleepData() {
   sleepDashboard.innerHTML += `
-  <div>
+  <div id="weeklySleep">
   <label>Weekly Sleep Quality:</label><p>${sleepingData.returnUsersSleepQualityForWeek(randomIdNum, lastWeek)}</p>
   <label>Weekly Hours Slept:</label><p>${sleepingData.returnUsersHoursSleptForWeek(randomIdNum, lastWeek)}
   </div>`;
@@ -90,7 +110,7 @@ function displayWeeklySleepData() {
 
 function displayTotalAverageSleepData() {
   sleepDashboard.innerHTML += `
-  <div>
+  <div id="averageSleep">
   <label>Average Sleep Quality:</label><p>${sleepingData.calculateUsersAverageSleepQuality(randomIdNum)}</p>
   <label>Average Hours Slept:</label><p>${sleepingData.calculateAverageHoursSlept(randomIdNum)}
   </div>`;
@@ -102,21 +122,21 @@ function displayTodaysSteps(id, date) {
   let filteredUser = activityData.filter(user => user.userID === id);
   let filteredDay = filteredUser.find(user => user.date === date);
   activityDashboard.innerHTML += `
-  <div>
+  <div id="dailyStep">
   <label>Today's Step Count:</label><p>${filteredDay.numSteps}</p>
   </div>`;
 }
 
 function displayMinutesActive() {
   activityDashboard.innerHTML += `
-  <div>
+  <div id="dailyMinutes">
   <label>Today's Minutes Active:</label><p>${activeData.returnUserMinutesActiveOnDay(currentDate, randomIdNum)}</p>
   </div>`;
 }
 
 function displayMilesWalked() {
   activityDashboard.innerHTML += `
-  <div>
+  <div id="milesWalked">
   <label>Miles Walked Today:</label><p>${activeData.calculateMilesWalked(currentDate, randomIdNum, userData)}</p>
   </div>`;
 }
@@ -125,7 +145,7 @@ function displayStepComparison(id, date) {
   let filteredUser = activityData.filter(user => user.userID === id);
   let filteredDay = filteredUser.find(user => user.date === date);
   activityDashboard.innerHTML += `
-  <div>
+  <div id="stepComp">
   <label>Your Steps:</label><p>${filteredDay.numSteps}</p>
   <label>Community Steps:</label><p>${activeData.calculateOverallAverageStepsTakenOnDay(currentDate)}
   </div>`;
@@ -133,7 +153,7 @@ function displayStepComparison(id, date) {
 
 function displayMinutesActiveComparison() {
   activityDashboard.innerHTML += `
-  <div>
+  <div id="activeComp">
   <label>Your Minutes Active:</label><p>${activeData.returnUserMinutesActiveOnDay(currentDate, randomIdNum)}</p>
   <label>Community Minutes Active:</label><p>${activeData.calculateOverallAverageMinutesActiveOnDay(currentDate)}
   </div>`;
@@ -143,7 +163,7 @@ function displayStairComparison(id, date) {
   let filteredUser = activityData.filter(user => user.userID === id);
   let filteredDay = filteredUser.find(user => user.date === date);
   activityDashboard.innerHTML += `
-  <div>
+  <div id="stairComp">
   <label>Your Stairs:</label><p>${filteredDay.flightsOfStairs}</p>
   <label>Community Stairs:</label><p>${activeData.calculateOverallAverageStairsClimbedOnDay(currentDate)}
   </div>`;
