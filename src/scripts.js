@@ -30,6 +30,7 @@ function generateRandomUser() {
   displayWaterConsumedToday();
   displayWeeklyWaterIntake();
   displayDailySleepData();
+  displayWeeklySleepData()
 }
 
 function populateUsers(person) {
