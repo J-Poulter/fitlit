@@ -63,30 +63,30 @@ class Activity {
   }
 
   calculateOverallAverageStairsClimbedOnDay(day) {
-    let filteredUsers = this.activityData.filter(user => user.userID === id);
+    let filteredUsers = this.activityData.filter(user => user.date === day);
     let totalStairs = filteredUsers.reduce((acc, cur) => {
-      acc += user.flightsOfStairs;
+      acc += cur.flightsOfStairs;
       return acc;
     }, 0);
-    return Number((totalStairs / filteredUser.length).toFixed(2));
+    return Number((totalStairs / filteredUsers.length).toFixed(2));
   }
 
   calculateOverallAverageStepsTakenOnDay(day) {
-    let filteredUsers = this.activityData.filter(user => user.userID === id);
+    let filteredUsers = this.activityData.filter(user => user.date === day);
     let totalSteps = filteredUsers.reduce((acc, cur) => {
-      acc += user.numSteps;
+      acc += cur.numSteps;
       return acc;
     }, 0);
-    return Number((totalSteps / filteredUser.length).toFixed(2));
+    return Number((totalSteps / filteredUsers.length).toFixed(2));
   }
 
   calculateOverallAverageMinutesActiveOnDay(day) {
-    let filteredUsers = this.activityData.filter(user => user.userID === id);
+    let filteredUsers = this.activityData.filter(user => user.date === day);
     let totalActiveMinutes = filteredUsers.reduce((acc, cur) => {
-      acc += user.flightsOfStairs;
+      acc += cur.minutesActive;
       return acc;
     }, 0);
-    return Number((totalActiveMinutes / filteredUser.length).toFixed(2));
+    return Number((totalActiveMinutes / filteredUsers.length).toFixed(2));
   }
 }
 
