@@ -1,82 +1,19 @@
-# FitLit Starter Kit
+# FitLit Abstract
 
-The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
+The Fitlit application is an app that provides the user with a wide variety of information relating to fitness activities.  Currently this information is being pulled from a data set of different categorized information, but as it evolves, it would eventually reach a point where it is extracting that information directly from a users fitness device such as a fitbit or anything else that keeps a large collection of the users activity data.
+## Visual demonstration of the app being used.
 
-## Setup
+### Display of random user's fitness activity and information.
 
-1. Within your group, decide on one person to have the project repository (repo) on their GitHub account. Then, that person should fork this repo - on the top right corner of this page, click the **Fork** button.
-1. Both memebers of the group should clone down the _forked_ repo. Since you don't want to name your project "activity-tracker-starter", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
-1. Run `open src/index.html` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-1. Make sure both members of your team are collaborators on the forked repo.
+Here we can see what display information is contained in the application for a random user. Their data is tied together by their ID Number property and it allows all that user's relevant information the be extracted onto the webpage.
+![Fitlit Display](https://user-images.githubusercontent.com/51523262/74387953-edc83700-4df1-11ea-9425-6949f34d4fc1.png)
+![Fitlit Display2](https://user-images.githubusercontent.com/51523262/74387957-ef91fa80-4df1-11ea-9e19-911d5ce4bb74.png)
 
-## Testing
+### Newly generated information demonstration for a different random user.
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
+Here is another example of the information being generated for a user but for a different randomly generated Id number.
+![New RandomUser](https://user-images.githubusercontent.com/51523262/74388097-63340780-4df2-11ea-8c09-fcbbbd32fff8.png)
 
-## Linting Your Code
+## Install/Setup
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
-
-Your linter will look only at the JavaScript files you have within the `src` and the `test` directories.
-
-## Data Model
-
-**Users**
-
-```
-[
-  {
-    "id": [number],
-    "name": [string],
-    "address": [string],
-    "email": [string],
-    "strideLength": [number - feet],
-    "dailyStepGoal": [number - steps],
-    "friends": [array - one-way connection to other user(s)]
-  },
-  ...more user data
-]
-```
-
-**Activity**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numSteps": [number - steps],
-    "minutesActive": [number - minutes],
-    "flightsOfStairs": [number - flights]
-  },
-  ...more activity data
-]
-```
-
-**Hydration**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numOunces": [number - ounces]
-  },
-  ...more hydration data
-]
-```
-
-**Sleep**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "hoursSlept": [number - hours],
-    "sleepQuality": [number - unitless]
-  },
-  ...more sleep data
-]
-```
+In order to setup the application, you will need to go to <https://github.com/melissasteele09/fitlit> in order to retrieve the necessary files.  Click on the green 'Clone or download' button and copy the https address.  Open your terminal and change directories into where you would like to install the application and run 'git clone (paste address you copied)' and hit return.  Change into the directory and open the index.html file found in the src folder.  It will have a randomly generated user's information on display and to change that, you can change the current users ID number to whichever one you are looking for and it will update the information accordingly.  
